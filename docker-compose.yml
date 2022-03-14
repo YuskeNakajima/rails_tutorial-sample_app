@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: tail -f /dev/null
+    ports:
+      - 3000:3000
+      - 1234:1234
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+    depends_on:
+      - chrome
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
